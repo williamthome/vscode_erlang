@@ -1,0 +1,49 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "fileTypes": [
+        "eel"
+    ],
+    "injections": {
+        "R:text.erlang": {
+            "comment": "Uses R: to ensure this matches after any other injections.",
+            "patterns": [
+                {
+                    "include": "source.erlang"
+                }
+            ]
+        }
+    },
+    "name": "Embedded Erlang",
+    "patterns": [
+        {
+            "begin": "<%#",
+            "captures": {
+                "0": {
+                    "name": "punctuation.definition.comment.eel"
+                }
+            },
+            "end": "#%>",
+            "name": "comment.block.eel"
+        },
+        {
+            "match": "(<%=?\\s+)(.*)(\\s+\\.?%>)",
+            "captures": {
+                "1": {
+                    "name": "punctuation.section.embedded.erlang"
+                },
+                "2": {
+                    "patterns": [
+                        {
+                            "include": "source.erlang"
+                        }
+                    ]
+                },
+                "3": {
+                    "name": "punctuation.section.embedded.erlang"
+                }
+            },
+            "name": "meta.embedded.line.erlang"
+        }
+    ],
+    "scopeName": "text.erlang"
+}
